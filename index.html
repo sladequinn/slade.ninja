@@ -1,218 +1,274 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Sparkles, Sword, Ghost, ShieldHalf, Waves, Music2, FlaskConical } from "lucide-react";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>slade.ninja — Projects with teeth</title>
+  <meta name="description" content="Slade — digital visionary energy. Projects with teeth." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { color-scheme: dark; }
+    html,body { background:#0a0a0b }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    /* subtle float on hover */
+    .lift { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+    .lift:hover { transform: translateY(-4px); }
+    /* gradient border wrapper */
+    .gwrap { padding:1px; background-image: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03)); border-radius: 1rem; }
+    /* card backdrop */
+    .glass { background: rgba(9,9,11,.7); backdrop-filter: blur(10px); border-radius: 1rem; }
+    /* icon circle */
+    .ico { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:.75rem; background:rgba(255,255,255,.08); }
+    /* bg glows */
+    .bg-glow {
+      position: fixed; inset: 0; pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(1000px 500px at 10% -10%, rgba(56,189,248,.12), transparent),
+        radial-gradient(800px 400px at 90% 20%, rgba(168,85,247,.10), transparent),
+        linear-gradient(to bottom, rgba(255,255,255,.02), transparent);
+    }
+  </style>
+</head>
+<body class="text-zinc-100 antialiased">
+  <div class="bg-glow" aria-hidden="true"></div>
 
-const projects = [
-  {
-    name: "Slime Co. Labs",
-    url: "https://slimeco.ca",
-    tag: "Tactile Oddities",
-    icon: <FlaskConical className="h-5 w-5" />,
-    blurb:
-      "Not just slime—lab-crafted sensory experiments. From gemstone-clear butter and cloud blends to 3D-printed articulated creatures.",
-    chips: ["Materials Lab", "Limited Drops"],
-    accent: "from-emerald-400 via-cyan-300 to-emerald-500",
-  },
-  {
-    name: "Monsterfucker Club",
-    url: "https://monsterfucker.club",
-    tag: "Cryptid Toys",
-    icon: <Ghost className="h-5 w-5" />,
-    blurb:
-      "Premium cryptid toys for monster lovers with no shame. Hand-selected designs, elevated packaging, and a wink at the taboo. This isn’t Etsy, it’s evolution.",
-    chips: ["Cryptid Aesthetic", "NSFW"],
-    accent: "from-fuchsia-400 via-purple-400 to-indigo-500",
-  },
-  {
-    name: "Jewel Thief Canada",
-    url: "https://jewelthief.ca",
-    tag: "Conflict‑Free Brilliance",
-    icon: <Sword className="h-5 w-5" />,
-    blurb:
-      "Conflict-free doesn’t have to mean compromise. Lab-grown diamonds, custom goldsmithing, and everyday luxury you can wear without guilt.",
-    chips: ["Lab‑Grown", "Custom Studio"],
-    accent: "from-amber-300 via-yellow-300 to-rose-300",
-  },
-  {
-    name: "Villain Supply Co",
-    url: "https://villain.supply",
-    tag: "Streetwear with Menace",
-    icon: <ShieldHalf className="h-5 w-5" />,
-    blurb:
-      "Streetwear with menace. Iconic silhouettes, sharp details, and limited drops built for those who don’t play side-character.",
-    chips: ["Streetwear", "Limited Runs"],
-    accent: "from-neutral-200 via-slate-300 to-zinc-200",
-  },
-  {
-    name: "Holoscape",
-    url: "https://holoscape.ai",
-    tag: "Where Words Become Worlds",
-    icon: <Waves className="h-5 w-5" />,
-    blurb:
-      "Say it, see it, step inside it. A platform where spoken prompts become immersive VR worlds—bridging art, play, and generative tech.",
-    chips: ["Generative Reality", "VR/360"],
-    accent: "from-cyan-300 via-sky-300 to-violet-400",
-  },
-  {
-    name: "SoundScribble",
-    url: "https://soundscribble.ca",
-    tag: "AI‑Native Music",
-    icon: <Music2 className="h-5 w-5" />,
-    blurb:
-      "Music that listens to you. Sketch an idea in words, get a soundtrack in minutes. AI-native composition built for creators who move fast.",
-    chips: ["Generative Audio", "Stems"],
-    accent: "from-teal-300 via-emerald-300 to-lime-300",
-  },
-];
-
-const Badge = ({ children }) => (
-  <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs/none text-white/80 backdrop-blur">
-    <Sparkles className="h-3.5 w-3.5" />
-    {children}
-  </span>
-);
-
-const ProjectCard = ({ p }) => (
-  <motion.a
-    href={p.url}
-    target="_blank"
-    rel="noreferrer"
-    className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-[1px] transition-transform hover:-translate-y-0.5"
-    style={{
-      backgroundImage: `linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03))`,
-    }}
-    whileHover={{ y: -4 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-  >
-    <div className={`rounded-[1rem] bg-zinc-950/70 p-5 sm:p-6 backdrop-blur-xl relative`}>      
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gradient-to-tr ${p.accent}`} />
-      <div className="relative z-10 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
-          {p.icon}
-        </div>
-        <div>
-          <h3 className="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-            {p.name}
-            <ExternalLink className="h-4 w-4 opacity-60 group-hover:opacity-100" />
-          </h3>
-          <p className="text-white/60 text-sm -mt-0.5">{p.tag}</p>
+  <!-- Header (title only, no nav) -->
+  <header class="sticky top-0 z-30 backdrop-blur-md bg-zinc-950/40 border-b border-white/10">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="flex items-center justify-between py-4">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-400 via-cyan-300 to-emerald-300"></div>
+          <span class="font-semibold tracking-tight">slade.ninja</span>
         </div>
       </div>
-      <p className="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
-        {p.blurb}
-      </p>
-      <div className="relative z-10 mt-4 flex flex-wrap gap-2">
-        {p.chips.map((c) => (
-          <span key={c} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">
-            {c}
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="py-20 sm:py-28">
+        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight">
+          Digital visionary energy.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-400 to-violet-400">
+            Projects with teeth.
           </span>
-        ))}
+        </h1>
+        <p class="mt-4 max-w-2xl text-white/70">
+          Weirdly elegant things across slime labs, conflict-free jewelry, villain gear,
+          immersive holoscapes, and AI-native sound.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3 text-xs">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-white/80">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="opacity-80"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Based in Kitchener, Canada
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-white/80">Builder • Director • Problem-solver</span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-white/80">Vaporwave-adjacent aesthetic</span>
+        </div>
       </div>
     </div>
-  </motion.a>
-);
+  </section>
 
-export default function SladeNinja() {
-  return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 antialiased">
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(1000px_500px_at_10%_-10%,rgba(56,189,248,0.12),transparent),radial-gradient(800px_400px_at_90%_20%,rgba(168,85,247,0.10),transparent),linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]"
-      />
+  <!-- Work grid -->
+  <section id="work" class="relative">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pb-24">
+      <div class="flex items-end justify-between">
+        <h2 class="text-xl font-semibold tracking-tight">Selected Work</h2>
+        <span class="text-xs text-white/50">Live & in-progress</span>
+      </div>
 
-      <header className="sticky top-0 z-30 backdrop-blur-md bg-zinc-950/40 border-b border-white/10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-400 via-cyan-300 to-emerald-300" />
-              <span className="font-semibold tracking-tight">slade.ninja</span>
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Slime Co. Labs -->
+        <a class="gwrap lift block border border-white/10" href="https://slimeco.ca" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-emerald-400 via-cyan-300 to-emerald-500 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">🧪</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  Slime Co. Labs
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">Tactile Oddities</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </header>
-
-      <section className="relative">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="py-20 sm:py-28">
-            <motion.h1
-              className="text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              Digital visionary energy.
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-400 to-violet-400">
-                Projects with teeth.
-              </span>
-            </motion.h1>
-            <motion.p
-              className="mt-4 max-w-2xl text-white/70"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-            >
-              Weirdly elegant things across slime labs, conflict‑free jewelry, villain gear, immersive holoscapes, and AI‑native sound.
-            </motion.p>
-            <motion.div
-              className="mt-8 flex flex-wrap items-center gap-3"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Badge>Based in Kitchener, Canada</Badge>
-              <Badge>Builder • Director • Problem‑solver</Badge>
-              <Badge>Vaporwave‑adjacent aesthetic</Badge>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" className="relative">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-24">
-          <div className="flex items-end justify-between">
-            <h2 className="text-xl font-semibold tracking-tight">Selected Work</h2>
-            <span className="text-xs text-white/50">Live & in‑progress</span>
-          </div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projects.map((p) => (
-              <ProjectCard key={p.name} p={p} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="relative">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-20">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur">
-            <h3 className="text-lg font-semibold tracking-tight">About</h3>
-            <p className="mt-3 text-white/80 leading-relaxed">
-              Slade blends design direction, generative tooling, and unapologetic taste to ship ideas that feel inevitable. 
-              The vibe is sleek‑meets‑feral: museum‑grade minimalism with an aftertaste of supervillain.
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Not just slime—lab-crafted sensory experiments. From gemstone-clear butter and cloud blends to 3D-printed articulated creatures.
             </p>
-            <ul className="mt-4 grid gap-2 text-white/70 text-sm sm:grid-cols-2">
-              <li>• AI‑assisted visuals & workflows (Flux/ComfyUI)</li>
-              <li>• Product design for tactile & wearable goods</li>
-              <li>• VR/360 world building and prompt architecture</li>
-              <li>• Ethics‑first luxury via lab‑grown diamonds</li>
-            </ul>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Materials Lab</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Limited Drops</span>
+            </div>
           </div>
-        </div>
-      </section>
+        </a>
 
-      <footer id="contact" className="relative border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-            <div>
-              <h4 className="text-base font-semibold">Let’s build something unnecessarily excellent.</h4>
-              <p className="text-white/70 text-sm mt-1">Business inquiries: <a className="underline hover:text-white" href="mailto:contact@slade.ninja">contact@slade.ninja</a></p>
+        <!-- Monsterfucker Club -->
+        <a class="gwrap lift block border border-white/10" href="https://monsterfucker.club" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-fuchsia-400 via-purple-400 to-indigo-500 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">👻</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  Monsterfucker Club
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">Cryptid Toys</p>
+              </div>
             </div>
-            <div className="text-sm text-white/60">
-              © {new Date().getFullYear()} slade.ninja — Words become worlds.
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Premium cryptid toys for monster lovers with no shame. Hand-selected designs, elevated packaging, and a wink at the taboo. This isn’t Etsy, it’s evolution.
+            </p>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Cryptid Aesthetic</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">NSFW</span>
             </div>
           </div>
-        </div>
-      </footer>
+        </a>
+
+        <!-- Jewel Thief Canada -->
+        <a class="gwrap lift block border border-white/10" href="https://jewelthief.ca" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-amber-300 via-yellow-300 to-rose-300 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">🗡️</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  Jewel Thief Canada
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">Conflict-Free Brilliance</p>
+              </div>
+            </div>
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Conflict-free doesn’t have to mean compromise. Lab-grown diamonds, custom goldsmithing, and everyday luxury you can wear without guilt.
+            </p>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Lab-Grown</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Custom Studio</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Villain Supply Co -->
+        <a class="gwrap lift block border border-white/10" href="https://villain.supply" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-neutral-200 via-slate-300 to-zinc-200 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">🛡️</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  Villain Supply Co
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">Streetwear with Menace</p>
+              </div>
+            </div>
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Streetwear with menace. Iconic silhouettes, sharp details, and limited drops built for those who don’t play side-character.
+            </p>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Streetwear</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Limited Runs</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Holoscape -->
+        <a class="gwrap lift block border border-white/10" href="https://holoscape.ai" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-cyan-300 via-sky-300 to-violet-400 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">🌊</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  Holoscape
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">Where Words Become Worlds</p>
+              </div>
+            </div>
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Say it, see it, step inside it. A platform where spoken prompts become immersive VR worlds—bridging art, play, and generative tech.
+            </p>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Generative Reality</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">VR/360</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- SoundScribble -->
+        <a class="gwrap lift block border border-white/10" href="https://soundscribble.ca" target="_blank" rel="noreferrer">
+          <div class="glass p-5 sm:p-6 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-teal-300 via-emerald-300 to-lime-300 pointer-events-none"></div>
+            <div class="relative z-10 flex items-center gap-3">
+              <div class="ico">🎵</div>
+              <div>
+                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
+                  SoundScribble
+                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
+                <p class="text-white/60 text-sm -mt-0.5">AI-Native Music</p>
+              </div>
+            </div>
+            <p class="relative z-10 mt-4 text-white/80 text-sm leading-relaxed">
+              Music that listens to you. Sketch an idea in words, get a soundtrack in minutes. AI-native composition built for creators who move fast.
+            </p>
+            <div class="relative z-10 mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Generative Audio</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Stems</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
     </div>
-  );
-}
+  </section>
+
+  <!-- About -->
+  <section id="about" class="relative">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pb-20">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur">
+        <h3 class="text-lg font-semibold tracking-tight">About</h3>
+        <p class="mt-3 text-white/80 leading-relaxed">
+          Slade blends design direction, generative tooling, and unapologetic taste to ship ideas that feel inevitable.
+          The vibe is sleek-meets-feral: museum-grade minimalism with an aftertaste of supervillain.
+        </p>
+        <ul class="mt-4 grid gap-2 text-white/70 text-sm sm:grid-cols-2">
+          <li>• AI-assisted visuals & workflows (Flux/ComfyUI)</li>
+          <li>• Product design for tactile & wearable goods</li>
+          <li>• VR/360 world building and prompt architecture</li>
+          <li>• Ethics-first luxury via lab-grown diamonds</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="relative border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <h4 class="text-base font-semibold">Let’s build something unnecessarily excellent.</h4>
+          <p class="text-white/70 text-sm mt-1">
+            Business inquiries: <a class="underline hover:text-white" href="mailto:contact@slade.ninja">contact@slade.ninja</a>
+          </p>
+        </div>
+        <div class="text-sm text-white/60">
+          © <span id="year"></span> slade.ninja — Words become worlds.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
