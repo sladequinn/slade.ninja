@@ -3,39 +3,80 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>slade.ninja — Projects with teeth</title>
-  <meta name="description" content="Slade — digital visionary energy. Projects with teeth." />
+  <meta name="description" content="Slade — digital visionary energy. Projects with teeth across slime labs, conflict-free jewelry, villain gear, immersive holoscapes, and AI-native sound." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="slade.ninja — Projects with teeth">
+  <meta property="og:description" content="Weirdly elegant things across slime labs, conflict-free jewelry, villain gear, immersive holoscapes, and AI-native sound.">
+  <meta property="og:url" content="https://slade.ninja">
+  <meta property="og:image" content="https://slade.ninja/og.png"> <!-- replace when you add one -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="slade.ninja — Projects with teeth">
+  <meta name="twitter:description" content="Weirdly elegant things across slime labs, conflict-free jewelry, villain gear, immersive holoscapes, and AI-native sound.">
+  <meta name="twitter:image" content="https://slade.ninja/og.png">
+
+  <!-- Favicon (inline SVG; swap later if you want) -->
+  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%230a0a0b"/><path d="M44 16H22v8h12c6 0 10 4 10 10s-4 10-10 10H18" stroke="%23a78bfa" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root { color-scheme: dark; }
     html,body { background:#0a0a0b }
-    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; }
-    /* subtle float on hover */
-    .lift { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
-    .lift:hover { transform: translateY(-4px); }
-    /* gradient border wrapper */
-    .gwrap { padding:1px; background-image: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03)); border-radius: 1rem; }
-    /* card backdrop */
-    .glass { background: rgba(9,9,11,.7); backdrop-filter: blur(10px); border-radius: 1rem; }
-    /* icon circle */
-    .ico { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:.75rem; background:rgba(255,255,255,.08); }
-    /* bg glows */
-    .bg-glow {
-      position: fixed; inset: 0; pointer-events:none; z-index:-1;
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+
+    /* Animated atmosphere */
+    .bg-anim {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none;
       background:
-        radial-gradient(1000px 500px at 10% -10%, rgba(56,189,248,.12), transparent),
-        radial-gradient(800px 400px at 90% 20%, rgba(168,85,247,.10), transparent),
-        linear-gradient(to bottom, rgba(255,255,255,.02), transparent);
+        radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(168,85,247,.09), transparent 60%),
+        radial-gradient(800px 400px at 50% 120%, rgba(34,197,94,.06), transparent 60%);
+      animation: drift 24s linear infinite;
     }
+    @keyframes drift {
+      0%   { filter: hue-rotate(0deg); transform: translate3d(0,0,0); }
+      50%  { filter: hue-rotate(20deg); transform: translate3d(0,-12px,0); }
+      100% { filter: hue-rotate(0deg); transform: translate3d(0,0,0); }
+    }
+    /* Subtle noise layer */
+    .noise {
+      position: fixed; inset: 0; z-index:-1; pointer-events:none; opacity:.06; mix-blend: soft-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.5"/></svg>');
+      background-size: 160px 160px;
+    }
+
+    /* Cards */
+    .lift { transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+    .lift:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .gwrap { padding:1px; background-image: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03)); border-radius: 1rem; border:1px solid rgba(255,255,255,.1); }
+    .glass { background: rgba(9,9,11,.7); backdrop-filter: blur(10px); border-radius: 1rem; }
+    .ico { display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:.75rem; background:rgba(255,255,255,.08); }
+    .fade-in { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.revealed { opacity: 1; transform: translateY(0); }
+
+    /* Status pill styles */
+    .status { font-size:11px; letter-spacing:.2px; padding:.3rem .55rem; border-radius:999px; border:1px solid; background:rgba(255,255,255,.05); }
+    .status[data-status="live"]         { color:#22c55e; border-color:#16a34a; }
+    .status[data-status="in-progress"]  { color:#60a5fa; border-color:#3b82f6; }
+    .status[data-status="brewing"]      { color:#fbbf24; border-color:#f59e0b; }
   </style>
+
+  <!-- Optional analytics (uncomment + set your domain)
+  <script defer data-domain="slade.ninja" src="https://plausible.io/js/script.js"></script>
+  -->
 </head>
 <body class="text-zinc-100 antialiased">
-  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-anim" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-  <!-- Header (title only, no nav) -->
+  <!-- Header -->
   <header class="sticky top-0 z-30 backdrop-blur-md bg-zinc-950/40 border-b border-white/10">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex items-center justify-between py-4">
@@ -84,16 +125,16 @@
       <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
         <!-- Slime Co. Labs -->
-        <a class="gwrap lift block border border-white/10" href="https://slimeco.ca" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://slimeco.ca" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-emerald-400 via-cyan-300 to-emerald-500 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">🧪</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  Slime Co. Labs
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">Slime Co. Labs</h3>
+                  <span class="status" data-status="live">Live</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">Tactile Oddities</p>
               </div>
             </div>
@@ -108,16 +149,16 @@
         </a>
 
         <!-- Monsterfucker Club -->
-        <a class="gwrap lift block border border-white/10" href="https://monsterfucker.club" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://monsterfucker.club" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-fuchsia-400 via-purple-400 to-indigo-500 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">👻</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  Monsterfucker Club
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">Monsterfucker Club</h3>
+                  <span class="status" data-status="in-progress">In Progress</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">Cryptid Toys</p>
               </div>
             </div>
@@ -132,16 +173,16 @@
         </a>
 
         <!-- Jewel Thief Canada -->
-        <a class="gwrap lift block border border-white/10" href="https://jewelthief.ca" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://jewelthief.ca" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-amber-300 via-yellow-300 to-rose-300 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">🗡️</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  Jewel Thief Canada
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">Jewel Thief Canada</h3>
+                  <span class="status" data-status="live">Live</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">Conflict-Free Brilliance</p>
               </div>
             </div>
@@ -156,16 +197,16 @@
         </a>
 
         <!-- Villain Supply Co -->
-        <a class="gwrap lift block border border-white/10" href="https://villain.supply" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://villain.supply" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-neutral-200 via-slate-300 to-zinc-200 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">🛡️</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  Villain Supply Co
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">Villain Supply Co</h3>
+                  <span class="status" data-status="in-progress">In Progress</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">Streetwear with Menace</p>
               </div>
             </div>
@@ -180,16 +221,16 @@
         </a>
 
         <!-- Holoscape -->
-        <a class="gwrap lift block border border-white/10" href="https://holoscape.ai" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://holoscape.ai" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-cyan-300 via-sky-300 to-violet-400 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">🌊</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  Holoscape
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">Holoscape</h3>
+                  <span class="status" data-status="in-progress">In Progress</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">Where Words Become Worlds</p>
               </div>
             </div>
@@ -204,16 +245,16 @@
         </a>
 
         <!-- SoundScribble -->
-        <a class="gwrap lift block border border-white/10" href="https://soundscribble.ca" target="_blank" rel="noreferrer">
+        <a class="gwrap lift fade-in block" href="https://soundscribble.ca" target="_blank" rel="noreferrer">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-teal-300 via-emerald-300 to-lime-300 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
               <div class="ico">🎵</div>
-              <div>
-                <h3 class="text-white text-lg font-semibold tracking-tight flex items-center gap-2">
-                  SoundScribble
-                  <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M21 10v11H3V3h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </h3>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-white text-lg font-semibold tracking-tight truncate">SoundScribble</h3>
+                  <span class="status" data-status="brewing">Brewing</span>
+                </div>
                 <p class="text-white/60 text-sm -mt-0.5">AI-Native Music</p>
               </div>
             </div>
@@ -268,7 +309,14 @@
   </footer>
 
   <script>
+    // year stamp
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
