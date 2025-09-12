@@ -17,14 +17,13 @@
   <meta name="twitter:description" content="Projects with teeth.">
   <meta name="twitter:image" content="https://slade.ninja/og.png">
 
-  <!-- JSON-LD (Organization + Person mix) -->
+  <!-- JSON-LD (Person/Brand) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Slade",
     "url":"https://slade.ninja",
-    "brand":{"@type":"Brand","name":"Slime Co. Labs"},
     "sameAs":[
       "https://slimeco.ca","https://monsterfucker.club",
       "https://jewelthief.ca","https://villain.supply",
@@ -33,7 +32,7 @@
   }
   </script>
 
-  <!-- Favicon stack (quick) -->
+  <!-- Favicon(s) -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 
@@ -42,6 +41,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS fallback (in case CDN script hiccups) -->
+  <link rel="preload" href="https://unpkg.com/tailwindcss@3.4.10/dist/tailwind.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/tailwindcss@3.4.10/dist/tailwind.min.css"></noscript>
 
   <style>
     :root { color-scheme: dark; }
@@ -144,9 +146,9 @@
 
       <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <!-- CARD TEMPLATE: data attributes link to modal content by id -->
         <!-- Slime Co. Labs -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-slime">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://slimeco.ca" target="_blank" rel="noreferrer" data-modal-target="modal-slime">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-emerald-400 via-cyan-300 to-emerald-500 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -167,10 +169,11 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Limited Drops</span>
             </div>
           </div>
-        </button>
+        </a>
 
         <!-- Monsterfucker Club -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-monster">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://monsterfucker.club" target="_blank" rel="noreferrer" data-modal-target="modal-monster">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-fuchsia-400 via-purple-400 to-indigo-500 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -191,10 +194,11 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">NSFW</span>
             </div>
           </div>
-        </button>
+        </a>
 
         <!-- Jewel Thief Canada -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-jewel">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://jewelthief.ca" target="_blank" rel="noreferrer" data-modal-target="modal-jewel">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-amber-300 via-yellow-300 to-rose-300 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -215,10 +219,11 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Custom Studio</span>
             </div>
           </div>
-        </button>
+        </a>
 
         <!-- Villain Supply Co -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-villain">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://villain.supply" target="_blank" rel="noreferrer" data-modal-target="modal-villain">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-neutral-200 via-slate-300 to-zinc-200 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -239,10 +244,11 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Limited Runs</span>
             </div>
           </div>
-        </button>
+        </a>
 
         <!-- Holoscape -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-holoscape">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://holoscape.ai" target="_blank" rel="noreferrer" data-modal-target="modal-holoscape">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-cyan-300 via-sky-300 to-violet-400 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -263,10 +269,11 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">VR/360</span>
             </div>
           </div>
-        </button>
+        </a>
 
         <!-- SoundScribble -->
-        <button class="gwrap lift fade-in block text-left w-full" data-modal-target="modal-soundscribble">
+        <a class="gwrap lift fade-in block text-left w-full"
+           href="https://soundscribble.ca" target="_blank" rel="noreferrer" data-modal-target="modal-soundscribble">
           <div class="glass p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity bg-gradient-to-tr from-teal-300 via-emerald-300 to-lime-300 pointer-events-none"></div>
             <div class="relative z-10 flex items-center gap-3">
@@ -287,7 +294,7 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/80">Stems</span>
             </div>
           </div>
-        </button>
+        </a>
 
       </div>
     </div>
@@ -329,7 +336,7 @@
     </div>
   </footer>
 
-  <!-- MODALS (one per project) -->
+  <!-- MODALS -->
   <div class="modal-backdrop" id="modal-slime" aria-hidden="true" role="dialog" aria-label="Slime Co. Labs">
     <div class="modal">
       <div class="modal-header">
@@ -344,4 +351,184 @@
           <p class="text-white/80 leading-relaxed">
             Lab-crafted sensory experiments. Gemstone-clear, cloud blends, and 3D-printed articulated creatures engineered to wiggle, snap, and delight.
           </p>
-          <div cl
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://slimeco.ca" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="/assets/slimeco-lookbook.pdf" target="_blank" rel="noreferrer">Lookbook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-monster" aria-hidden="true" role="dialog" aria-label="Monsterfucker Club">
+    <div class="modal">
+      <div class="modal-header">
+        <strong>Monsterfucker Club</strong>
+        <button class="close-btn" data-modal-close>Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <video loading="lazy" muted playsinline loop poster="/assets/monsterfucker-cover.jpg">
+            <source src="/assets/monsterfucker-teaser.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <p class="text-white/80 leading-relaxed">
+            Premium cryptid toys/dildos with elevated packaging and a wink at the taboo. Built like art objects, shipped like secrets.
+          </p>
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://monsterfucker.club" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="mailto:contact@slade.ninja?subject=Monsterfucker%20Club%20Collab" rel="noreferrer">Collab</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-jewel" aria-hidden="true" role="dialog" aria-label="Jewel Thief Canada">
+    <div class="modal">
+      <div class="modal-header">
+        <strong>Jewel Thief Canada</strong>
+        <button class="close-btn" data-modal-close>Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <img loading="lazy" src="/assets/jewelthief-cover.jpg" alt="Jewel Thief preview">
+        </div>
+        <div>
+          <p class="text-white/80 leading-relaxed">
+            Lab-grown diamonds, custom goldsmithing, and everyday luxury you can wear without guilt. Made-to-order with design consults.
+          </p>
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://jewelthief.ca" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="mailto:contact@slade.ninja?subject=Jewel%20Thief%20Custom%20Piece" rel="noreferrer">Custom Inquiry</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-villain" aria-hidden="true" role="dialog" aria-label="Villain Supply Co">
+    <div class="modal">
+      <div class="modal-header">
+        <strong>Villain Supply Co</strong>
+        <button class="close-btn" data-modal-close>Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <img loading="lazy" src="/assets/villain-cover.jpg" alt="Villain Supply preview">
+        </div>
+        <div>
+          <p class="text-white/80 leading-relaxed">
+            Streetwear with menace. Icon silhouettes, sharp details, limited drops. Built for main characters, not extras.
+          </p>
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://villain.supply" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="mailto:contact@slade.ninja?subject=Villain%20Supply%20Wholesale" rel="noreferrer">Wholesale</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-holoscape" aria-hidden="true" role="dialog" aria-label="Holoscape">
+    <div class="modal">
+      <div class="modal-header">
+        <strong>Holoscape</strong>
+        <button class="close-btn" data-modal-close>Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <img loading="lazy" src="/assets/holoscape-cover.jpg" alt="Holoscape preview">
+        </div>
+        <div>
+          <p class="text-white/80 leading-relaxed">
+            Say it, see it, step inside it. Generative panoramas and immersive scenes with real-time creation.
+          </p>
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://holoscape.ai" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="mailto:contact@slade.ninja?subject=Holoscape%20Demo" rel="noreferrer">Request Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-soundscribble" aria-hidden="true" role="dialog" aria-label="SoundScribble">
+    <div class="modal">
+      <div class="modal-header">
+        <strong>SoundScribble</strong>
+        <button class="close-btn" data-modal-close>Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <video loading="lazy" muted playsinline loop poster="/assets/soundscribble-cover.jpg">
+            <source src="/assets/soundscribble-teaser.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <p class="text-white/80 leading-relaxed">
+            AI-native composition. Sketch a mood, get stems. Rapid score prototyping for visual creators.
+          </p>
+          <div class="modal-actions mt-4 flex gap-2">
+            <a href="https://soundscribble.ca" target="_blank" rel="noreferrer">Visit Site</a>
+            <a href="mailto:contact@slade.ninja?subject=SoundScribble%20Beta" rel="noreferrer">Beta Access</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="visually-hidden" id="modal-instructions">Press Escape to close. Click outside the dialog to dismiss.</p>
+
+  <script>
+    // year stamp
+    document.getElementById('year')?.textContent = new Date().getFullYear();
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('revealed');
+    }),{threshold:.12});
+    document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+    // --- modal logic ---
+    const modals = new Map();
+    document.querySelectorAll('.modal-backdrop').forEach(m=>modals.set(m.id,m));
+
+    function openModal(id){
+      const m = modals.get(id); if(!m) return;
+      m.classList.add('open'); m.setAttribute('aria-hidden','false');
+      const btn = m.querySelector('[data-modal-close]'); btn?.focus();
+      const vid = m.querySelector('video'); if(vid){ vid.play().catch(()=>{}); }
+    }
+    function closeModal(m){
+      m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+      const vid = m.querySelector('video'); if(vid){ vid.pause(); vid.currentTime=0; }
+    }
+
+    // Event delegation: upgrade anchor clicks to modals when available
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[data-modal-target]');
+      if(!a) return;
+      const id = a.getAttribute('data-modal-target');
+      if(modals.has(id)){
+        e.preventDefault(); // open modal instead of navigating away
+        openModal(id);
+      }
+    });
+
+    // Close buttons, ESC, click-outside
+    document.querySelectorAll('[data-modal-close]').forEach(btn=>{
+      btn.addEventListener('click',()=>closeModal(btn.closest('.modal-backdrop')));
+    });
+    window.addEventListener('keydown',e=>{
+      if(e.key==='Escape'){
+        document.querySelectorAll('.modal-backdrop.open').forEach(closeModal);
+      }
+    });
+    document.querySelectorAll('.modal-backdrop').forEach(b=>{
+      b.addEventListener('click',(e)=>{ if(e.target===b) closeModal(b); });
+    });
+  </script>
+</body>
+</html>
